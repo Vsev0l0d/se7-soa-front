@@ -1,24 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {RoutesTable} from "./components/RoutesTable";
 
 function App() {
+    const routes = [
+        {
+            "id": 5,
+            "name": "string",
+            "coordinates": {
+                "x": 0,
+                "y": 271
+            },
+            "creationDate": "2022-10-06",
+            "from": {
+                "id": 5,
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "to": {
+                "id": 5,
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "distance": 2
+        },
+        {
+            "id": 5,
+            "name": "string",
+            "coordinates": {
+                "x": 0,
+                "y": 271
+            },
+            "creationDate": "2022-10-06",
+            "from": {
+                "id": 5,
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "to": {
+                "id": 5,
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "distance": 2
+        }
+    ];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="container pt-4">
+        <RoutesTable routes={routes}/>
+      </div>
   );
 }
 
