@@ -1,5 +1,6 @@
 import React from "react";
 import {RoutesTable} from "./components/RoutesTable";
+import {RouteForm} from "./components/RouteForm";
 
 function App() {
     const routes = [
@@ -48,11 +49,12 @@ function App() {
             "distance": 2
         }
     ];
-  return (
-      <div className="container pt-4">
-        <RoutesTable routes={routes}/>
-      </div>
-  );
+    return (
+        <div className="container pt-4">
+            <RouteForm/>
+            <RoutesTable routes={routes}/>
+        </div>
+    );
 }
 
 export default App;
