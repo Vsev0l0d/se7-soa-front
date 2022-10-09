@@ -4,10 +4,10 @@ import Button from 'react-bootstrap/Button'
 import React from 'react'
 
 export const AddRouteButton = () => {
-    const setShow = useSetRecoilState(showModalForm)
-    const handleShow = () => setShow(true)
+	const setShow = useSetRecoilState(showModalForm)
+	const handleShow = () => setShow(true)
 
-    return (
-        <Button variant='dark me-2' onClick={handleShow}>Add route</Button>
-    )
+	return (
+		<Button variant="dark me-2" onClick={handleShow}>Add route</Button>
+	)
 }

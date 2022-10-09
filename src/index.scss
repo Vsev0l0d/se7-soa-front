@@ -5,23 +5,25 @@ body, html {
   height: 100%;
   background-color: #495057;
 }
-.app{
+
+.app {
   min-width: 100%;
   min-height: 100%;
   position: relative;
 }
 
-.bg-gray-700{
+.bg-gray-700 {
   background-color: #495057;
 }
-.bg-gray-900{
+
+.bg-gray-900 {
   background-color: #212529;
 }
 
-.selected > td{
+.selected > td {
   background-color: #f1aeb5;
 }
 
-tbody > tr:hover{
+tbody > tr:hover {
   opacity: .8;
 }
