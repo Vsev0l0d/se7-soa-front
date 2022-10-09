@@ -1,59 +1,18 @@
 import React from "react";
 import {RoutesTable} from "./components/RoutesTable";
 import {RouteForm} from "./components/RouteForm";
+import {RecoilRoot} from "recoil";
+import {AddRouteButton} from "./components/AddRouteButton";
 
 function App() {
-    const routes = [
-        {
-            "id": 5,
-            "name": "string",
-            "coordinates": {
-                "x": 0,
-                "y": 271
-            },
-            "creationDate": "2022-10-06",
-            "from": {
-                "id": 5,
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "to": {
-                "id": 5,
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "distance": 2
-        },
-        {
-            "id": 5,
-            "name": "string",
-            "coordinates": {
-                "x": 0,
-                "y": 271
-            },
-            "creationDate": "2022-10-06",
-            "from": {
-                "id": 5,
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "to": {
-                "id": 5,
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "distance": 2
-        }
-    ];
     return (
-        <div className="container pt-4">
-            <RouteForm/>
-            <RoutesTable routes={routes}/>
-        </div>
+        <RecoilRoot>
+            <div className="container pt-4">
+                <AddRouteButton/>
+                <RouteForm/>
+                <RoutesTable/>
+            </div>
+        </RecoilRoot>
     );
 }
 

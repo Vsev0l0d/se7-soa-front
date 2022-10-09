@@ -1,6 +1,10 @@
 import React from "react";
+import {useRecoilValue} from "recoil";
+import {routesState} from "../state/atoms";
 
-export const RoutesTable = ({routes}) => {
+export const RoutesTable = () => {
+    const routes = useRecoilValue(routesState);
+
     return (
         <table className="table table-dark table-bordered table-hover">
             <thead className="text-center align-middle">
