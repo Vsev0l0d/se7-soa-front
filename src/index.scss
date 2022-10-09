@@ -17,3 +17,11 @@ body, html {
 .bg-gray-900{
   background-color: #212529;
 }
+
+.selected > td{
+  background-color: #f1aeb5;
+}
+
+tr:hover{
+  opacity: .8;
+}

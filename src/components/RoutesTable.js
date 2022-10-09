@@ -1,21 +1,39 @@
-import React from "react";
-import {useRecoilValue} from "recoil";
-import {routesState} from "../state/atoms";
+import React from 'react'
+import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil'
+import {bufferRoute, routesState, selectedRoutesId, showModalForm} from '../state/atoms'
 
 export const RoutesTable = () => {
-    const routes = useRecoilValue(routesState);
+    const routes = useRecoilValue(routesState)
+    const setShow = useSetRecoilState(showModalForm)
+    const setBufferRoute = useSetRecoilState(bufferRoute)
+    const [selectedIds, setSelectedId] = useRecoilState(selectedRoutesId)
+
+    const edit = (route) => {
+        setBufferRoute(route)
+        setShow(true)
+    }
+
+    const select = (event, routeId) => {
+        if (selectedIds.indexOf(routeId) >= 0){
+            setSelectedId(selectedIds.filter((x) => {return x !== routeId}))
+            event.target.parentElement.classList.remove('selected')
+        } else {
+            setSelectedId([...selectedIds, routeId])
+            event.target.parentElement.classList.add('selected')
+        }
+    }
 
     return (
-        <table className="table table-dark table-bordered table-hover">
-            <thead className="text-center align-middle">
+        <table className='table table-dark table-bordered'>
+            <thead className='text-center align-middle'>
                 <tr>
-                    <th rowSpan="2">id</th>
-                    <th rowSpan="2">name</th>
-                    <th colSpan="2">coordinates</th>
-                    <th rowSpan="2">creationDate</th>
-                    <th colSpan="4">from</th>
-                    <th colSpan="4">to</th>
-                    <th rowSpan="2">distance</th>
+                    <th rowSpan='2'>id</th>
+                    <th rowSpan='2'>name</th>
+                    <th colSpan='2'>coordinates</th>
+                    <th rowSpan='2'>creationDate</th>
+                    <th colSpan='4'>from</th>
+                    <th colSpan='4'>to</th>
+                    <th rowSpan='2'>distance</th>
                 </tr>
                 <tr>
                     <th>x</th>
@@ -32,7 +50,8 @@ export const RoutesTable = () => {
             </thead>
             <tbody>
                 {routes.map(route => (
-                    <tr>
+                    <tr key={route.id} onDoubleClick={() => {edit(route)}}
+                        onClick={(event) => {select(event, route.id)}}>
                         <td>{route.id}</td>
                         <td>{route.name}</td>
                         <td>{route.coordinates.x}</td>
