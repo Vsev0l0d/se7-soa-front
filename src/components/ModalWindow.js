@@ -11,22 +11,19 @@ export const ModalWindow = () => {
 	const [routes, setRoutes] = useRecoilState(routesState)
 	const isEditing = useRecoilValue(isEditingRoute)
 
-	const handleClose = () => setShow(false)
 	const addRoute = () => {
 		setRoutes([...routes, route])
-		setRoute({})
 		setShow(false)
 	}
 	const updateRoute = () => {
 		setRoutes([...routes.filter((x) => {
 			return x.id !== route.id
 		}), route])
-		setRoute({})
 		setShow(false)
 	}
 
 	return (
-		<Modal show={show} onHide={handleClose}>
+		<Modal show={show} onHide={() => setShow(false)}>
 			<Modal.Header className="bg-dark text-light" closeButton closeVariant="white">
 				<Modal.Title>RouteForm {isEditing ? 'for id: ' + route.id : ''}</Modal.Title>
 			</Modal.Header>
@@ -34,7 +31,7 @@ export const ModalWindow = () => {
 				<RouteForm/>
 			</Modal.Body>
 			<Modal.Footer className="bg-dark text-light">
-				<Button variant="outline-secondary text-light"
+				<Button variant="outline-secondary text-light" hidden={isEditing}
 						onClick={() => setRoute({})}>Clear</Button>
 				<Button variant="outline-secondary text-light"
 						onClick={isEditing ? updateRoute : addRoute}>{isEditing ? 'Update route' : 'Add route'}</Button>

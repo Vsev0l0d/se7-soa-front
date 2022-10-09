@@ -17,7 +17,7 @@ export const bufferRoute = atom({
 
 export const showModalForm = atom({
 	key: 'showModalForm',
-	default: true,
+	default: false,
 })
 
 export const routesState = atom({
