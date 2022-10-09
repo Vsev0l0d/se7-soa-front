@@ -24,7 +24,7 @@ export const RoutesTable = () => {
     }
 
     return (
-        <table className='table table-dark table-bordered'>
+        <table className='table table-dark table-bordered mt-2'>
             <thead className='text-center align-middle'>
                 <tr>
                     <th rowSpan='2'>id</th>

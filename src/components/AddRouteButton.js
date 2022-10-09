@@ -8,6 +8,6 @@ export const AddRouteButton = () => {
     const handleShow = () => setShow(true)
 
     return (
-        <Button variant='dark' onClick={handleShow}>Add route</Button>
+        <Button variant='dark me-2' onClick={handleShow}>Add route</Button>
     )
 }
