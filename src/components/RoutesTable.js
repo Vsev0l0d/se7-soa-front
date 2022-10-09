@@ -1,15 +1,17 @@
 import React from 'react'
 import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil'
-import {bufferRoute, routesState, selectedRoutesId, showModalForm} from '../state/atoms'
+import {bufferRoute, isEditingRoute, routesState, selectedRoutesId, showModalForm} from '../state/atoms'
 
 export const RoutesTable = () => {
 	const routes = useRecoilValue(routesState)
 	const setShow = useSetRecoilState(showModalForm)
+	const setIsEditing = useSetRecoilState(isEditingRoute)
 	const setBufferRoute = useSetRecoilState(bufferRoute)
 	const [selectedIds, setSelectedId] = useRecoilState(selectedRoutesId)
 
 	const edit = (route) => {
 		setBufferRoute(route)
+		setIsEditing(true)
 		setShow(true)
 	}
 

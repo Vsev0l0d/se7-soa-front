@@ -5,9 +5,14 @@ export const selectedRoutesId = atom({
 	default: [],
 })
 
+export const isEditingRoute = atom({
+	key: 'isEditingRoute',
+	default: false,
+})
+
 export const bufferRoute = atom({
 	key: 'bufferRoute',
-	default: null,
+	default: {},
 })
 
 export const showModalForm = atom({
