@@ -15,6 +15,11 @@ export const wasValidated = atom({
 	default: false,
 })
 
+export const isAddingWithLocationIds = atom({
+	key: 'isAddingWithLocationIds',
+	default: false,
+})
+
 export const isEditingRoute = atom({
 	key: 'isEditingRoute',
 	default: false,

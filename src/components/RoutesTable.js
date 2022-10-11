@@ -1,6 +1,14 @@
 import React from 'react'
 import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil'
-import {bufferRoute, isEditingRoute, routesState, selectedRoutesId, showModalForm, wasValidated} from '../state/atoms'
+import {
+	bufferRoute,
+	isAddingWithLocationIds,
+	isEditingRoute,
+	routesState,
+	selectedRoutesId,
+	showModalForm,
+	wasValidated
+} from '../state/atoms'
 
 export const RoutesTable = () => {
 	const routes = useRecoilValue(routesState)
@@ -8,11 +16,13 @@ export const RoutesTable = () => {
 	const setIsEditing = useSetRecoilState(isEditingRoute)
 	const setBufferRoute = useSetRecoilState(bufferRoute)
 	const setValidated = useSetRecoilState(wasValidated)
+	const setIsAddingWithLocationIds = useSetRecoilState(isAddingWithLocationIds)
 	const [selectedIds, setSelectedId] = useRecoilState(selectedRoutesId)
 
 	const edit = (route) => {
 		setBufferRoute(route)
 		setValidated(false)
+		setIsAddingWithLocationIds(false)
 		setIsEditing(true)
 		setShow(true)
 	}

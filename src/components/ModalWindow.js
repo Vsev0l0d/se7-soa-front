@@ -5,6 +5,7 @@ import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil'
 import {
 	bufferRoute,
 	feedbackRouteValidator,
+	isAddingWithLocationIds,
 	isEditingRoute,
 	routesState,
 	showModalForm,
@@ -20,9 +21,10 @@ export const ModalWindow = () => {
 	const setFeedback = useSetRecoilState(feedbackRouteValidator)
 	const setValidated = useSetRecoilState(wasValidated)
 	const isEditing = useRecoilValue(isEditingRoute)
+	const isWithLocationIds = useRecoilValue(isAddingWithLocationIds)
 
 	const addRoute = () => {
-		const freshFeedback = validate(route)
+		const freshFeedback = validate(route, isWithLocationIds)
 		setFeedback(freshFeedback)
 		if (Object.keys(freshFeedback).length === 0) {
 			setRoutes([...routes, route])
@@ -31,7 +33,7 @@ export const ModalWindow = () => {
 		} else setValidated(true)
 	}
 	const updateRoute = () => {
-		const freshFeedback = validate(route)
+		const freshFeedback = validate(route, isWithLocationIds)
 		setFeedback(freshFeedback)
 		if (Object.keys(freshFeedback).length === 0) {
 			setRoutes([...routes.filter((x) => {
@@ -53,7 +55,7 @@ export const ModalWindow = () => {
 				<Modal.Title>RouteForm {isEditing ? 'for id: ' + route.id : ''}</Modal.Title>
 			</Modal.Header>
 			<Modal.Body className="bg-dark text-light">
-				<RouteForm/>
+				<RouteForm isEditing={isEditing}/>
 			</Modal.Body>
 			<Modal.Footer className="bg-dark text-light">
 				<Button variant="outline-secondary text-light" hidden={isEditing}

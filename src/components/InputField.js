@@ -1,7 +1,7 @@
 import {Form, InputGroup, OverlayTrigger, Tooltip} from 'react-bootstrap'
 import get from 'lodash.get'
 import {useRecoilState, useRecoilValue} from 'recoil'
-import {bufferRoute, feedbackRouteValidator, wasValidated} from '../state/atoms'
+import {bufferRoute, feedbackRouteValidator, isAddingWithLocationIds, wasValidated} from '../state/atoms'
 import set from 'lodash.set'
 import {validate} from '../utils/routeValidator'
 
@@ -9,12 +9,13 @@ export const InputField = ({id, isEmbedded = false, type = 'number'}) => {
 	const [route, setRoute] = useRecoilState(bufferRoute)
 	const [feedback, setFeedback] = useRecoilState(feedbackRouteValidator)
 	const validated = useRecoilValue(wasValidated)
+	const isWithLocationIds = useRecoilValue(isAddingWithLocationIds)
 
 	const change = (event) => {
 		const newRoute = JSON.parse(JSON.stringify(route))
 		set(newRoute, event.target.id, event.target.value)
 		setRoute(newRoute)
-		setFeedback(validate(newRoute))
+		setFeedback(validate(newRoute, isWithLocationIds))
 	}
 
 	return isEmbedded ? (
