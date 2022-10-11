@@ -1,16 +1,18 @@
 import React from 'react'
 import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil'
-import {bufferRoute, isEditingRoute, routesState, selectedRoutesId, showModalForm} from '../state/atoms'
+import {bufferRoute, isEditingRoute, routesState, selectedRoutesId, showModalForm, wasValidated} from '../state/atoms'
 
 export const RoutesTable = () => {
 	const routes = useRecoilValue(routesState)
 	const setShow = useSetRecoilState(showModalForm)
 	const setIsEditing = useSetRecoilState(isEditingRoute)
 	const setBufferRoute = useSetRecoilState(bufferRoute)
+	const setValidated = useSetRecoilState(wasValidated)
 	const [selectedIds, setSelectedId] = useRecoilState(selectedRoutesId)
 
 	const edit = (route) => {
 		setBufferRoute(route)
+		setValidated(false)
 		setIsEditing(true)
 		setShow(true)
 	}
@@ -54,9 +56,10 @@ export const RoutesTable = () => {
 			</thead>
 			<tbody>
 			{routes.map(route => (
-				<tr key={route.id} onDoubleClick={() => {
-					edit(route)
-				}}
+				<tr key={route.id} data-bs-toggle="tooltip" title={JSON.stringify(route, undefined, 4)}
+					onDoubleClick={() => {
+						edit(route)
+					}}
 					onClick={(event) => {
 						select(event, route.id)
 					}}>

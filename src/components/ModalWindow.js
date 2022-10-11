@@ -1,25 +1,50 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
-import {useRecoilState, useRecoilValue} from 'recoil'
-import {bufferRoute, isEditingRoute, routesState, showModalForm} from '../state/atoms'
+import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil'
+import {
+	bufferRoute,
+	feedbackRouteValidator,
+	isEditingRoute,
+	routesState,
+	showModalForm,
+	wasValidated
+} from '../state/atoms'
 import {RouteForm} from './RouteForm'
+import {validate} from '../utils/routeValidator'
 
 export const ModalWindow = () => {
 	const [show, setShow] = useRecoilState(showModalForm)
 	const [route, setRoute] = useRecoilState(bufferRoute)
 	const [routes, setRoutes] = useRecoilState(routesState)
+	const setFeedback = useSetRecoilState(feedbackRouteValidator)
+	const setValidated = useSetRecoilState(wasValidated)
 	const isEditing = useRecoilValue(isEditingRoute)
 
 	const addRoute = () => {
-		setRoutes([...routes, route])
-		setShow(false)
+		const freshFeedback = validate(route)
+		setFeedback(freshFeedback)
+		if (Object.keys(freshFeedback).length === 0) {
+			setRoutes([...routes, route])
+			setShow(false)
+			setValidated(false)
+		} else setValidated(true)
 	}
 	const updateRoute = () => {
-		setRoutes([...routes.filter((x) => {
-			return x.id !== route.id
-		}), route])
-		setShow(false)
+		const freshFeedback = validate(route)
+		setFeedback(freshFeedback)
+		if (Object.keys(freshFeedback).length === 0) {
+			setRoutes([...routes.filter((x) => {
+				return x.id !== route.id
+			}), route])
+			setShow(false)
+			setValidated(false)
+		} else setValidated(true)
+	}
+
+	const clear = () => {
+		setRoute({})
+		setValidated(false)
 	}
 
 	return (
@@ -32,7 +57,7 @@ export const ModalWindow = () => {
 			</Modal.Body>
 			<Modal.Footer className="bg-dark text-light">
 				<Button variant="outline-secondary text-light" hidden={isEditing}
-						onClick={() => setRoute({})}>Clear</Button>
+						onClick={clear}>Clear</Button>
 				<Button variant="outline-secondary text-light"
 						onClick={isEditing ? updateRoute : addRoute}>{isEditing ? 'Update route' : 'Add route'}</Button>
 			</Modal.Footer>

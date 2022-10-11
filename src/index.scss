@@ -27,3 +27,22 @@ body, html {
 tbody > tr:hover {
   opacity: .8;
 }
+
+td {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tooltip-inner {
+  background: red;
+}
+
+.tooltip-inner:empty {
+  visibility: hidden;
+}
+
+.tooltip-arrow {
+  visibility: hidden;
+}

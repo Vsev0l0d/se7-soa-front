@@ -5,6 +5,16 @@ export const selectedRoutesId = atom({
 	default: [],
 })
 
+export const feedbackRouteValidator = atom({
+	key: 'feedbackRouteValidator',
+	default: {},
+})
+
+export const wasValidated = atom({
+	key: 'wasValidated',
+	default: false,
+})
+
 export const isEditingRoute = atom({
 	key: 'isEditingRoute',
 	default: false,
