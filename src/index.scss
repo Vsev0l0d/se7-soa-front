@@ -46,3 +46,8 @@ td {
 .tooltip-arrow {
   visibility: hidden;
 }
+
+.input-group > .form-select {
+  flex: none;
+  width: auto;
+}
