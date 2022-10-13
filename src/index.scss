@@ -52,12 +52,6 @@ td {
   width: auto;
 }
 
-.content {
-  display: grid;
-  grid-template-columns: minmax(300px, auto) minmax(300px, auto);
-  justify-items: left;
-}
-
 .form-control[type="number"]:invalid {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-secondary-rgb), var(--bs-text-opacity)) !important;
@@ -67,7 +61,11 @@ td {
   width: 126px;
 }
 
+.input-group .btn:first-child {
+  width: 102px;
+}
+
 #sortForm .input-group-text {
   overflow: auto;
-  width: 535px;
+  width: calc(100% - 182px);
 }
