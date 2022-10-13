@@ -5,7 +5,7 @@ import {bufferRoute, feedbackRouteValidator, isAddingWithLocationIds, wasValidat
 import set from 'lodash.set'
 import {validate} from '../utils/routeValidator'
 
-export const InputField = ({id, isEmbedded = false, type = 'number'}) => {
+export const InputField = ({id, isEmbedded = false, type = 'number', step='any'}) => {
 	const [route, setRoute] = useRecoilState(bufferRoute)
 	const [feedback, setFeedback] = useRecoilState(feedbackRouteValidator)
 	const validated = useRecoilValue(wasValidated)
@@ -27,7 +27,7 @@ export const InputField = ({id, isEmbedded = false, type = 'number'}) => {
 									{validated ? get(feedback, id, '') : ''}
 								</Tooltip>}>
 				<Form.Control id={id} value={get(route, id, '')}
-							  type={type} onChange={change}
+							  type={type} step={step} onChange={change}
 							  isInvalid={get(feedback, id, '') !== '' && validated}
 							  isValid={get(feedback, id, '') === '' && validated}/>
 			</OverlayTrigger>
@@ -41,7 +41,7 @@ export const InputField = ({id, isEmbedded = false, type = 'number'}) => {
 			<Form.Group className="mb-3">
 				<Form.Label htmlFor={id}>{id.firstLetterToUppercase()}</Form.Label>
 				<Form.Control id={id} value={get(route, id, '')}
-							  type={type} onChange={change}
+							  type={type} step={step} onChange={change}
 							  isInvalid={get(feedback, id, '') !== '' && validated}
 							  isValid={get(feedback, id, '') === '' && validated}/>
 			</Form.Group>

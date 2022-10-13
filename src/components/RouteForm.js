@@ -24,8 +24,8 @@ export const RouteForm = ({isEditing}) => {
 									   onChange={change} checked={withIds}/>}
 			{withIds ?
 				<>
-					<InputField id="from.id"/>
-					<InputField id="to.id"/>
+					<InputField id="from.id" step="1"/>
+					<InputField id="to.id" step="1"/>
 				</>
 				:
 				<>

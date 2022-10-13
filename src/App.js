@@ -6,6 +6,7 @@ import {AddRouteButton} from './components/AddRouteButton'
 import {DeleteRouteButton} from './components/DeleteRouteButton'
 import {QuantityFormByDistance} from './components/QuantityFormByDistance'
 import {FiltersForm} from './components/FiltersForm'
+import {SearchFormBetweenLocations} from './components/SearchFormBetweenLocations'
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 					<FiltersForm/>
 					<div className="mx-3">
 						<QuantityFormByDistance/>
+						<SearchFormBetweenLocations/>
 					</div>
 				</div>
 				<AddRouteButton/>

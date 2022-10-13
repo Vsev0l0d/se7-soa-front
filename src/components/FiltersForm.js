@@ -8,7 +8,7 @@ export const FiltersForm = () => {
 	const [filters, setFilters] = useState({})
 
 	return (
-		<Modal.Dialog contentClassName="bg-dark text-light p-3" className="mb-3 m-0">
+		<Modal.Dialog contentClassName="bg-dark text-light p-3" className="mb-3 m-0" id="filtersForm">
 			<Modal.Header>
 				<Modal.Title>Filters</Modal.Title>
 			</Modal.Header>
