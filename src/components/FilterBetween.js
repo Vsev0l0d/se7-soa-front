@@ -3,7 +3,7 @@ import React from 'react'
 import set from 'lodash.set'
 import get from 'lodash.get'
 
-export const FilterBetween = ({filters, setFilters, id, type = 'number', step='any'}) => {
+export const FilterBetween = ({filters, setFilters, id, type = 'number', step = 'any'}) => {
 	const change = (event) => {
 		const newFilters = JSON.parse(JSON.stringify(filters))
 		set(newFilters, id + '.' + event.target.id, event.target.value)

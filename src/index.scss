@@ -64,5 +64,10 @@ td {
 }
 
 #filtersForm .input-group-text {
-  width: 125px;
+  width: 126px;
+}
+
+#sortForm .input-group-text {
+  overflow: auto;
+  width: 535px;
 }

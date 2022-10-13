@@ -9,7 +9,7 @@ export const validate = (route, isAddingWithLocationIds) => {
 	if (Number(get(route, 'coordinates.y', '')) > 271)
 		set(feedback, 'coordinates.y', 'Сoordinates.y must be no greater than 271')
 
-	if (isAddingWithLocationIds){
+	if (isAddingWithLocationIds) {
 		['from.id', 'to.id'].forEach(field => {
 			const id = Number(get(route, field, 'id'))
 			if (id < 0)

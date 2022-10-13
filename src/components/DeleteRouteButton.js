@@ -9,9 +9,7 @@ export const DeleteRouteButton = () => {
 
 	const deleteRoutes = () => {
 		selectedIds.forEach((id) => {
-			setRoutes(routes.filter((x) => {
-				return x.id !== id
-			}))
+			setRoutes(routes.filter((x) => x.id !== id))
 		})
 		setSelectedId([])
 	}

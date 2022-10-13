@@ -7,7 +7,7 @@ export const SearchFormBetweenLocations = () => {
 	const [toId, setToId] = useState('')
 
 	const findAll = () => {
-		console.log(fromId + ' ' + toId + ' ' + document.getElementById("selectOrderBy").value)
+		console.log(fromId + ' ' + toId + ' ' + document.getElementById('selectOrderBy').value)
 	}
 
 	return (
@@ -22,7 +22,7 @@ export const SearchFormBetweenLocations = () => {
 				<Form.Control type="number" value={fromId}
 							  onChange={event => setFromId(event.target.value)}/>
 				<InputGroup.Text>to id</InputGroup.Text>
-				<Form.Control type="number"  value={toId}
+				<Form.Control type="number" value={toId}
 							  onChange={event => setToId(event.target.value)}/>
 				<InputGroup.Text>sort by</InputGroup.Text>
 				<Form.Select id="selectOrderBy">

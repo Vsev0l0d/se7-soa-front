@@ -5,7 +5,7 @@ import {bufferRoute, feedbackRouteValidator, isAddingWithLocationIds, wasValidat
 import set from 'lodash.set'
 import {validate} from '../utils/routeValidator'
 
-export const InputField = ({id, isEmbedded = false, type = 'number', step='any'}) => {
+export const InputField = ({id, isEmbedded = false, type = 'number', step = 'any'}) => {
 	const [route, setRoute] = useRecoilState(bufferRoute)
 	const [feedback, setFeedback] = useRecoilState(feedbackRouteValidator)
 	const validated = useRecoilValue(wasValidated)

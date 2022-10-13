@@ -6,7 +6,7 @@ export const QuantityFormByDistance = () => {
 	const [distance, setDistance] = useState('')
 
 	const findOut = () => {
-		alert(document.getElementById("selectComparisonOperation").value + " " + distance)
+		alert(document.getElementById('selectComparisonOperation').value + ' ' + distance)
 	}
 
 	return (

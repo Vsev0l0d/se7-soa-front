@@ -8,6 +8,7 @@ import {QuantityFormByDistance} from './components/QuantityFormByDistance'
 import {FiltersForm} from './components/FiltersForm'
 import {SearchFormBetweenLocations} from './components/SearchFormBetweenLocations'
 import {SearchFormBySubstringInName} from './components/SearchFormBySubstringInName'
+import {SortForm} from './components/SortForm'
 
 function App() {
 	return (
@@ -19,6 +20,7 @@ function App() {
 						<QuantityFormByDistance/>
 						<SearchFormBetweenLocations/>
 						<SearchFormBySubstringInName/>
+						<SortForm/>
 					</div>
 				</div>
 				<AddRouteButton/>

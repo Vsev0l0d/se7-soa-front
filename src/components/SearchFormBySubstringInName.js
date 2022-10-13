@@ -6,7 +6,7 @@ export const SearchFormBySubstringInName = () => {
 	const [substr, setSubstr] = useState('')
 
 	const findAll = () => {
-		console.log()
+		console.log(substr)
 	}
 
 	return (

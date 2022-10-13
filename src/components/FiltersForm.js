@@ -34,7 +34,9 @@ export const FiltersForm = () => {
 				<Button variant="outline-secondary text-light mx-1"
 						onClick={() => setFilters({})}>Clear</Button>
 				<Button variant="outline-secondary text-light"
-						onClick={() => {console.log(filters)}}>Apply filters</Button>
+						onClick={() => {
+							console.log(filters)
+						}}>Apply filters</Button>
 			</Modal.Footer>
 		</Modal.Dialog>
 	)
