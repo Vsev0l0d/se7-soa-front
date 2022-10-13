@@ -50,14 +50,14 @@ export const ModalWindow = () => {
 	}
 
 	return (
-		<Modal show={show} onHide={() => setShow(false)}>
-			<Modal.Header className="bg-dark text-light" closeButton closeVariant="white">
+		<Modal show={show} onHide={() => setShow(false)} contentClassName="bg-dark text-light">
+			<Modal.Header closeButton closeVariant="white">
 				<Modal.Title>RouteForm {isEditing ? 'for id: ' + route.id : ''}</Modal.Title>
 			</Modal.Header>
-			<Modal.Body className="bg-dark text-light">
+			<Modal.Body>
 				<RouteForm isEditing={isEditing}/>
 			</Modal.Body>
-			<Modal.Footer className="bg-dark text-light">
+			<Modal.Footer>
 				<Button variant="outline-secondary text-light" hidden={isEditing}
 						onClick={clear}>Clear</Button>
 				<Button variant="outline-secondary text-light"

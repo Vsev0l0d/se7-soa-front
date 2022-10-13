@@ -51,3 +51,14 @@ td {
   flex: none;
   width: auto;
 }
+
+.content {
+  display: grid;
+  grid-template-columns: minmax(300px, auto) minmax(300px, auto);
+  justify-items: left;
+}
+
+.form-control[type="number"]:invalid {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-secondary-rgb), var(--bs-text-opacity)) !important;
+}
