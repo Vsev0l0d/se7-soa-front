@@ -30,7 +30,7 @@ const sortToStr = (sort) => {
 const pagingToStr = (paging) => {
 	const limit = get(paging, 'limit', '')
 	const pageNumber = get(paging, 'pageNumber', '')
-	return (limit.length ? 'page_size=' + limit + '&': '') + (pageNumber.length ? 'pageNumber=' + pageNumber : '')
+	return (limit.length ? 'page_size=' + limit + '&': '') + (pageNumber.length ? 'page=' + pageNumber : '')
 }
 
 export const getRoutes = (filters, sort, paging) => {
@@ -44,4 +44,8 @@ export const deleteRoute = (id) => {
 
 export const countByDistance = (mode, distance) => {
 	return axios.post(SERVICE_1 + '/routes/count/distance/' + mode + '/' + distance)
+}
+
+export const findRoutesWithNameContains = (substr) => {
+	return axios.post(SERVICE_1 + '/routes/name/contains/' + substr)
 }

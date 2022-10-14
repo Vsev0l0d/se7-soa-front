@@ -4,14 +4,13 @@ import {useState} from 'react'
 import {useRecoilState} from 'recoil'
 import {pagingState} from '../state/atoms'
 
-export const PagingForm = ({updateRoutes}) => {
+export const PagingForm = () => {
 	const [paging, setPaging] = useRecoilState(pagingState)
 	const [limit, setLimit] = useState("")
 	const [pageNumber, setPageNumber] = useState("")
 
 	const click = () => {
 		setPaging({'limit': limit, 'pageNumber': pageNumber})
-		updateRoutes(null, null, {'limit': limit, 'pageNumber': pageNumber})
 	}
 
 	return (

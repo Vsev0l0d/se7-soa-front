@@ -24,15 +24,10 @@ function App() {
 		updateRoutes()
 	});
 
-	const updateRoutes = (filtersNew, sortNew, pagingNew) => {
-		const  promise = getRoutes(
-			filtersNew ? filtersNew : filters,
-			sortNew ? sortNew : sort,
-			pagingNew ? pagingNew : paging
-		)
-
-		promise.then((response) => {
+	const updateRoutes = () => {
+		getRoutes(filters, sort, paging).then((response) => {
 			setRoutes(response.data)
+			toast.success('ыыыыыыыыыы') //mmm все плохо
 		}).catch((err) => {
 			toast.error(get(err, 'response.data.message', 'error'))
 		})
@@ -44,9 +39,9 @@ function App() {
 			<QuantityFormByDistance/>
 			<SearchFormBetweenLocations/>
 			<SearchFormBySubstringInName/>
-			<PagingForm updateRoutes={updateRoutes}/>
-			<SortForm updateRoutes={updateRoutes}/>
-			<FiltersForm updateRoutes={updateRoutes}/>
+			<PagingForm/>
+			<SortForm/>
+			<FiltersForm/>
 			<ModalWindow/>
 			<DeleteRouteButton updateRoutes={updateRoutes}/>
 			<RoutesTable/>

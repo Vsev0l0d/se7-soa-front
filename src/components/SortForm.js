@@ -5,7 +5,7 @@ import {useState} from 'react'
 import {useRecoilState} from 'recoil'
 import {sortState} from '../state/atoms'
 
-export const SortForm = ({updateRoutes}) => {
+export const SortForm = () => {
 	const [sortGlobal, setSortGlobal] = useRecoilState(sortState)
 	const [sort, setSort] = useState([])
 
@@ -16,7 +16,6 @@ export const SortForm = ({updateRoutes}) => {
 
 	const sortBy = () => {
 		setSortGlobal(sort)
-		updateRoutes(null, sort)
 	}
 
 	const add = (event) => {

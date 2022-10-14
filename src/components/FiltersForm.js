@@ -6,7 +6,7 @@ import {FilterEquality} from './FilterEquality'
 import {filtersState} from '../state/atoms'
 import {useSetRecoilState} from 'recoil'
 
-export const FiltersForm = ({updateRoutes}) => {
+export const FiltersForm = () => {
 	const setFiltersGlobal = useSetRecoilState(filtersState)
 	const [filters, setFilters] = useState({})
 	const [show, setShow] = useState(false)
@@ -46,7 +46,6 @@ export const FiltersForm = ({updateRoutes}) => {
 					<Button variant="outline-secondary text-light"
 							onClick={() => {
 								setFiltersGlobal(filters)
-								updateRoutes(filters)
 							}}>Apply filters</Button>
 				</Modal.Footer>
 			</Modal>
