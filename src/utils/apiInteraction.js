@@ -41,3 +41,7 @@ export const getRoutes = (filters, sort, paging) => {
 export const deleteRoute = (id) => {
 	return axios.delete(SERVICE_1 + '/routes/' + id)
 }
+
+export const countByDistance = (mode, distance) => {
+	return axios.post(SERVICE_1 + '/routes/count/distance/' + mode + '/' + distance)
+}
