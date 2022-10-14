@@ -10,13 +10,17 @@ export const DeleteRouteButton = ({updateRoutes}) => {
 	const [selectedIds, setSelectedId] = useRecoilState(selectedRoutesId)
 
 	const deleteRoutes = () => {
+		const promises = []
 		selectedIds.forEach((id) => {
-			deleteRoute(id).then((response) => {
-				setSelectedId([])
-				updateRoutes()
+			promises.push(deleteRoute(id).then(() => {
+				toast.success('route with id=' + id + ' removed')
 			}).catch((err) => {
 				toast.error(get(err, 'response.data.message', 'error'))
-			})
+			}))
+		})
+		Promise.all(promises).finally(() => {
+			updateRoutes()
+			setSelectedId([])
 		})
 	}
 
