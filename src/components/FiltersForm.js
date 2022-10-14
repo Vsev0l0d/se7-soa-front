@@ -3,11 +3,12 @@ import React, {useState} from 'react'
 import Button from 'react-bootstrap/Button'
 import {FilterBetween} from './FilterBetween'
 import {FilterEquality} from './FilterEquality'
-import {filtersState} from '../state/atoms'
+import {filtersState, isDataNeedsToBeUpdatedState} from '../state/atoms'
 import {useSetRecoilState} from 'recoil'
 
 export const FiltersForm = () => {
 	const setFiltersGlobal = useSetRecoilState(filtersState)
+	const setIsDataNeedsToBeUpdated = useSetRecoilState(isDataNeedsToBeUpdatedState)
 	const [filters, setFilters] = useState({})
 	const [show, setShow] = useState(false)
 
@@ -46,6 +47,7 @@ export const FiltersForm = () => {
 					<Button variant="outline-secondary text-light"
 							onClick={() => {
 								setFiltersGlobal(filters)
+								setIsDataNeedsToBeUpdated(true)
 							}}>Apply filters</Button>
 				</Modal.Footer>
 			</Modal>

@@ -2,11 +2,12 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import {DropdownButton, Form, InputGroup} from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import {useState} from 'react'
-import {useRecoilState} from 'recoil'
-import {sortState} from '../state/atoms'
+import {useRecoilState, useSetRecoilState} from 'recoil'
+import {isDataNeedsToBeUpdatedState, sortState} from '../state/atoms'
 
 export const SortForm = () => {
 	const [sortGlobal, setSortGlobal] = useRecoilState(sortState)
+	const setIsDataNeedsToBeUpdated = useSetRecoilState(isDataNeedsToBeUpdatedState)
 	const [sort, setSort] = useState([])
 
 	const [fields, setFields] = useState(new Map([
@@ -16,6 +17,7 @@ export const SortForm = () => {
 
 	const sortBy = () => {
 		setSortGlobal(sort)
+		setIsDataNeedsToBeUpdated(true)
 	}
 
 	const add = (event) => {

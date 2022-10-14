@@ -1,5 +1,10 @@
 import {atom} from 'recoil'
 
+export const isDataNeedsToBeUpdatedState = atom({
+	key: 'isDataNeedsToBeUpdatedState',
+	default: true,
+})
+
 export const sortState = atom({
 	key: 'sortState',
 	default: [],

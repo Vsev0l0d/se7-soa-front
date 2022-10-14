@@ -1,16 +1,18 @@
 import {Form, InputGroup} from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import {useState} from 'react'
-import {useRecoilState} from 'recoil'
-import {pagingState} from '../state/atoms'
+import {useRecoilState, useSetRecoilState} from 'recoil'
+import {isDataNeedsToBeUpdatedState, pagingState} from '../state/atoms'
 
 export const PagingForm = () => {
 	const [paging, setPaging] = useRecoilState(pagingState)
+	const setIsDataNeedsToBeUpdated = useSetRecoilState(isDataNeedsToBeUpdatedState)
 	const [limit, setLimit] = useState("")
 	const [pageNumber, setPageNumber] = useState("")
 
 	const click = () => {
 		setPaging({'limit': limit, 'pageNumber': pageNumber})
+		setIsDataNeedsToBeUpdated(true)
 	}
 
 	return (
