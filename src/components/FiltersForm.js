@@ -3,8 +3,11 @@ import React, {useState} from 'react'
 import Button from 'react-bootstrap/Button'
 import {FilterBetween} from './FilterBetween'
 import {FilterEquality} from './FilterEquality'
+import {filtersState} from '../state/atoms'
+import {useSetRecoilState} from 'recoil'
 
-export const FiltersForm = () => {
+export const FiltersForm = ({updateRoutes}) => {
+	const setFiltersGlobal = useSetRecoilState(filtersState)
 	const [filters, setFilters] = useState({})
 	const [show, setShow] = useState(false)
 
@@ -36,10 +39,14 @@ export const FiltersForm = () => {
 				</Modal.Body>
 				<Modal.Footer>
 					<Button variant="outline-secondary text-light"
-							onClick={() => setFilters({})}>Clear</Button>
+							onClick={() => {
+								setFilters({})
+								setFiltersGlobal({})
+							}}>Clear</Button>
 					<Button variant="outline-secondary text-light"
 							onClick={() => {
-								console.log(filters)
+								setFiltersGlobal(filters)
+								updateRoutes(filters)
 							}}>Apply filters</Button>
 				</Modal.Footer>
 			</Modal>

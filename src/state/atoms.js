@@ -1,5 +1,20 @@
 import {atom} from 'recoil'
 
+export const sortState = atom({
+	key: 'sortState',
+	default: [],
+})
+
+export const filtersState = atom({
+	key: 'filtersState',
+	default: {},
+})
+
+export const pagingState = atom({
+	key: 'pagingState',
+	default: {},
+})
+
 export const selectedRoutesId = atom({
 	key: 'selectedRoutesId',
 	default: [],
@@ -37,50 +52,5 @@ export const showModalForm = atom({
 
 export const routesState = atom({
 	key: 'routesState',
-	default: [
-		{
-			'id': 4,
-			'name': 'string',
-			'coordinates': {
-				'x': 0,
-				'y': 271
-			},
-			'creationDate': '2022-10-06',
-			'from': {
-				'id': 5,
-				'x': 0,
-				'y': 0,
-				'z': 0
-			},
-			'to': {
-				'id': 5,
-				'x': 0,
-				'y': 0,
-				'z': 0
-			},
-			'distance': 2
-		},
-		{
-			'id': 5,
-			'name': 'string',
-			'coordinates': {
-				'x': 0,
-				'y': 271
-			},
-			'creationDate': '2022-10-06',
-			'from': {
-				'id': 5,
-				'x': 0,
-				'y': 0,
-				'z': 0
-			},
-			'to': {
-				'id': 5,
-				'x': 0,
-				'y': 0,
-				'z': 0
-			},
-			'distance': 2
-		}
-	],
+	default: [],
 })
