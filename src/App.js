@@ -34,9 +34,7 @@ function App() {
 		promise.then((response) => {
 			setRoutes(response.data)
 		}).catch((err) => {
-			toast.error(
-				get(err, 'response.data.message', 'error')
-			)
+			toast.error(get(err, 'response.data.message', 'error'))
 		})
 	}
 
@@ -50,7 +48,7 @@ function App() {
 			<SortForm updateRoutes={updateRoutes}/>
 			<FiltersForm updateRoutes={updateRoutes}/>
 			<ModalWindow/>
-			<DeleteRouteButton/>
+			<DeleteRouteButton updateRoutes={updateRoutes}/>
 			<RoutesTable/>
 		</div>
 	)

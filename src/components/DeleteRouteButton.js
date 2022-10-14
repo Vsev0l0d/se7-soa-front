@@ -1,17 +1,23 @@
 import {useRecoilState} from 'recoil'
-import {routesState, selectedRoutesId} from '../state/atoms'
+import {selectedRoutesId} from '../state/atoms'
 import Button from 'react-bootstrap/Button'
 import React from 'react'
+import {deleteRoute} from '../utils/apiInteraction'
+import toast from 'react-hot-toast'
+import get from 'lodash.get'
 
-export const DeleteRouteButton = () => {
+export const DeleteRouteButton = ({updateRoutes}) => {
 	const [selectedIds, setSelectedId] = useRecoilState(selectedRoutesId)
-	const [routes, setRoutes] = useRecoilState(routesState)
 
 	const deleteRoutes = () => {
 		selectedIds.forEach((id) => {
-			setRoutes(routes.filter((x) => x.id !== id))
+			deleteRoute(id).then((response) => {
+				setSelectedId([])
+				updateRoutes()
+			}).catch((err) => {
+				toast.error(get(err, 'response.data.message', 'error'))
+			})
 		})
-		setSelectedId([])
 	}
 
 	return (
