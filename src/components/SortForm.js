@@ -4,16 +4,14 @@ import Button from 'react-bootstrap/Button'
 import {useState} from 'react'
 import {useRecoilState, useSetRecoilState} from 'recoil'
 import {isDataNeedsToBeUpdatedState, sortState} from '../state/atoms'
+import {fieldList} from '../utils/constants'
 
 export const SortForm = () => {
 	const [sortGlobal, setSortGlobal] = useRecoilState(sortState)
 	const setIsDataNeedsToBeUpdated = useSetRecoilState(isDataNeedsToBeUpdatedState)
 	const [sort, setSort] = useState([])
 
-	const [fields, setFields] = useState(new Map([
-		'id', 'name', 'coordinates_x', 'coordinates_y', 'creationDate',
-		'from_id', 'from_x', 'from_y', 'from_z',
-		'to_id', 'to_x', 'to_y', 'to_z'].map(x => [x, false])))
+	const [fields, setFields] = useState(new Map(fieldList.map(x => [x, false])))
 
 	const sortBy = () => {
 		setSortGlobal(sort)

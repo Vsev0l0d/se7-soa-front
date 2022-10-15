@@ -69,3 +69,8 @@ td {
   overflow: auto;
   width: calc(100% - 182px);
 }
+
+.dropdown-menu {
+  max-height: 200px;
+  overflow: auto;
+}

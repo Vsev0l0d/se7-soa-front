@@ -1,13 +1,25 @@
 import {Form, InputGroup} from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import {useState} from 'react'
+import {findBetweenLocationsAndSortBy} from '../utils/apiInteraction'
+import toast from 'react-hot-toast'
+import get from 'lodash.get'
+import {useSetRecoilState} from 'recoil'
+import {routesState} from '../state/atoms'
+import {fieldList} from '../utils/constants'
 
 export const SearchFormBetweenLocations = () => {
+	const setRoutes = useSetRecoilState(routesState)
 	const [fromId, setFromId] = useState('')
 	const [toId, setToId] = useState('')
 
 	const findAll = () => {
-		console.log(fromId + ' ' + toId + ' ' + document.getElementById('selectOrderBy').value)
+		findBetweenLocationsAndSortBy(fromId, toId, document.getElementById('selectOrderBy').value).then((response) => {
+			setRoutes(response.data)
+			toast.success('Successfully')
+		}).catch((err) => {
+			toast.error(get(err, 'response.data.message', 'error'))
+		})
 	}
 
 	return (
@@ -26,19 +38,9 @@ export const SearchFormBetweenLocations = () => {
 							  onChange={event => setToId(event.target.value)}/>
 				<InputGroup.Text>sort by</InputGroup.Text>
 				<Form.Select id="selectOrderBy">
-					<option>id</option>
-					<option>name</option>
-					<option>coordinates_x</option>
-					<option>coordinates_y</option>
-					<option>creationDate</option>
-					<option>from_id</option>
-					<option>from_x</option>
-					<option>from_y</option>
-					<option>from_z</option>
-					<option>to_id</option>
-					<option>to_x</option>
-					<option>to_y</option>
-					<option>to_z</option>
+					{fieldList.map(field => ['+' + field, '-' + field]).flat().map(x =>
+						<option key={x}>{x}</option>
+					)}
 				</Form.Select>
 			</InputGroup>
 		</Form>

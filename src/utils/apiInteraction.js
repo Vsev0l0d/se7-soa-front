@@ -1,7 +1,8 @@
 import axios from 'axios'
 import get from 'lodash.get'
 
-const SERVICE_1 = 'http://localhost:4567/soa-3-1.0-SNAPSHOT'
+const SERVICE_1 = 'https://localhost:4568/soa-3-1.0-SNAPSHOT'
+const SERVICE_2 = 'https://localhost:31361/soa-3-2-1.0-SNAPSHOT'
 
 const filtersToStr = (filters) => {
 	return Object.keys(filters).map(filter => {
@@ -48,4 +49,8 @@ export const countByDistance = (mode, distance) => {
 
 export const findRoutesWithNameContains = (substr) => {
 	return axios.post(SERVICE_1 + '/routes/name/contains/' + substr)
+}
+
+export const findBetweenLocationsAndSortBy = (fromId, toId, orderBy) => {
+	return axios.post(SERVICE_2 + '/navigator/routes/' + fromId + '/' + toId + '/' + orderBy)
 }

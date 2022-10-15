@@ -9,6 +9,8 @@ import {
 	showModalForm,
 	wasValidated
 } from '../state/atoms'
+import {fieldList} from '../utils/constants'
+import get from 'lodash.get'
 
 export const RoutesTable = () => {
 	const routes = useRecoilValue(routesState)
@@ -73,20 +75,11 @@ export const RoutesTable = () => {
 					onClick={(event) => {
 						select(event, route.id)
 					}}>
-					<td>{route.id}</td>
-					<td>{route.name}</td>
-					<td>{route.coordinates.x}</td>
-					<td>{route.coordinates.y}</td>
-					<td>{route.creationDate}</td>
-					<td>{route.from.id}</td>
-					<td>{route.from.x}</td>
-					<td>{route.from.y}</td>
-					<td>{route.from.z}</td>
-					<td>{route.to.id}</td>
-					<td>{route.to.x}</td>
-					<td>{route.to.y}</td>
-					<td>{route.to.z}</td>
-					<td>{route.distance}</td>
+					{fieldList.map(field => (
+						<td key={field}>
+							{get(route, field.replaceAll('_', '.'), '')}
+						</td>
+					))}
 				</tr>
 			))}
 			</tbody>
