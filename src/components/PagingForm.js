@@ -7,8 +7,8 @@ import {isDataNeedsToBeUpdatedState, pagingState} from '../state/atoms'
 export const PagingForm = () => {
 	const [paging, setPaging] = useRecoilState(pagingState)
 	const setIsDataNeedsToBeUpdated = useSetRecoilState(isDataNeedsToBeUpdatedState)
-	const [limit, setLimit] = useState("")
-	const [pageNumber, setPageNumber] = useState("")
+	const [limit, setLimit] = useState('')
+	const [pageNumber, setPageNumber] = useState('')
 
 	const click = () => {
 		setPaging({'limit': limit, 'pageNumber': pageNumber})

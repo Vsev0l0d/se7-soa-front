@@ -34,10 +34,8 @@ export const RoutesTable = () => {
 			setSelectedId(selectedIds.filter((x) => {
 				return x !== routeId
 			}))
-			event.target.parentElement.classList.remove('selected')
 		} else {
 			setSelectedId([...selectedIds, routeId])
-			event.target.parentElement.classList.add('selected')
 		}
 	}
 
@@ -69,6 +67,7 @@ export const RoutesTable = () => {
 			<tbody>
 			{routes.map(route => (
 				<tr key={route.id} data-bs-toggle="tooltip" title={JSON.stringify(route, undefined, 4)}
+					className={selectedIds.indexOf(route.id) !== -1 ? 'selected' : ''}
 					onDoubleClick={() => {
 						edit(route)
 					}}

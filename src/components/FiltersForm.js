@@ -14,7 +14,7 @@ export const FiltersForm = () => {
 
 	return (
 		<>
-			<Button variant="dark me-2" onClick={()=>setShow(!show)}>Set up filters</Button>
+			<Button variant="dark me-2" onClick={() => setShow(!show)}>Set up filters</Button>
 			<Modal contentClassName="bg-dark text-light p-3" id="filtersForm"
 				   show={show} onHide={() => setShow(false)}>
 				<Modal.Header closeButton closeVariant="white">

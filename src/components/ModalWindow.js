@@ -6,41 +6,52 @@ import {
 	bufferRoute,
 	feedbackRouteValidator,
 	isAddingWithLocationIds,
+	isDataNeedsToBeUpdatedState,
 	isEditingRoute,
-	routesState,
 	showModalForm,
 	wasValidated
 } from '../state/atoms'
 import {RouteForm} from './RouteForm'
 import {validate} from '../utils/routeValidator'
+import {postRoute, putRoute} from '../utils/apiInteraction'
+import toast from 'react-hot-toast'
+import get from 'lodash.get'
 
 export const ModalWindow = () => {
 	const [show, setShow] = useRecoilState(showModalForm)
 	const [route, setRoute] = useRecoilState(bufferRoute)
-	const [routes, setRoutes] = useRecoilState(routesState)
 	const [isEditing, setIsEditing] = useRecoilState(isEditingRoute)
 	const setFeedback = useSetRecoilState(feedbackRouteValidator)
 	const setValidated = useSetRecoilState(wasValidated)
+	const setIsDataNeedsToBeUpdated = useSetRecoilState(isDataNeedsToBeUpdatedState)
 	const isWithLocationIds = useRecoilValue(isAddingWithLocationIds)
 
 	const addRoute = () => {
 		const freshFeedback = validate(route, isWithLocationIds)
 		setFeedback(freshFeedback)
 		if (Object.keys(freshFeedback).length === 0) {
-			setRoutes([...routes, route])
-			setShow(false)
-			setValidated(false)
+			postRoute(route, isWithLocationIds).then(() => {
+				setIsDataNeedsToBeUpdated(true)
+				setShow(false)
+				setValidated(false)
+				toast.success('Successfully')
+			}).catch((err) => {
+				toast.error(get(err, 'response.data.message', 'error'))
+			})
 		} else setValidated(true)
 	}
 	const updateRoute = () => {
 		const freshFeedback = validate(route, isWithLocationIds)
 		setFeedback(freshFeedback)
 		if (Object.keys(freshFeedback).length === 0) {
-			setRoutes([...routes.filter((x) => {
-				return x.id !== route.id
-			}), route])
-			setShow(false)
-			setValidated(false)
+			putRoute(route, false).then(() => {
+				setIsDataNeedsToBeUpdated(true)
+				setShow(false)
+				setValidated(false)
+				toast.success('Successfully')
+			}).catch((err) => {
+				toast.error(get(err, 'response.data.message', 'error'))
+			})
 		} else setValidated(true)
 	}
 

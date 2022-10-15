@@ -16,7 +16,8 @@ export const DeleteRouteButton = () => {
 			promises.push(deleteRoute(id).then(() => {
 				toast.success('route with id=' + id + ' removed')
 			}).catch((err) => {
-				toast.error(get(err, 'response.data.message', 'error'))
+				toast.error('route with id=' + id + ' is not deleted\n' +
+					get(err, 'response.data.message', 'error'))
 			}))
 		})
 		Promise.all(promises).finally(() => {
