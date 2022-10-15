@@ -9,10 +9,10 @@ export const QuantityFormByDistance = () => {
 	const [distance, setDistance] = useState('')
 
 	const findOut = () => {
-		countByDistance(document.getElementById('selectComparisonOperation').value, distance).then((response) => {
-			toast.success(response.data)
-		}).catch((err) => {
-			toast.error(get(err, 'response.data.message', 'error'))
+		toast.promise(countByDistance(document.getElementById('selectComparisonOperation').value, distance), {
+			loading: 'Counting...',
+			success: (response) => response.data,
+			error: (err) => get(err, 'response.data.message', 'Error'),
 		})
 	}
 

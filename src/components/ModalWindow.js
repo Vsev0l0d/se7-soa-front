@@ -30,13 +30,14 @@ export const ModalWindow = () => {
 		const freshFeedback = validate(route, isWithLocationIds)
 		setFeedback(freshFeedback)
 		if (Object.keys(freshFeedback).length === 0) {
-			postRoute(route, isWithLocationIds).then(() => {
+			toast.promise(postRoute(route, isWithLocationIds), {
+				loading: 'Trying to add...',
+				success: 'Successfully',
+				error: (err) => get(err, 'response.data.message', 'Error'),
+			}).then(() => {
 				setIsDataNeedsToBeUpdated(true)
 				setShow(false)
 				setValidated(false)
-				toast.success('Successfully')
-			}).catch((err) => {
-				toast.error(get(err, 'response.data.message', 'error'))
 			})
 		} else setValidated(true)
 	}
@@ -44,13 +45,14 @@ export const ModalWindow = () => {
 		const freshFeedback = validate(route, isWithLocationIds)
 		setFeedback(freshFeedback)
 		if (Object.keys(freshFeedback).length === 0) {
-			putRoute(route, false).then(() => {
+			toast.promise(putRoute(route, false), {
+				loading: 'Trying to update...',
+				success: 'Successfully',
+				error: (err) => get(err, 'response.data.message', 'Error'),
+			}).then(() => {
 				setIsDataNeedsToBeUpdated(true)
 				setShow(false)
 				setValidated(false)
-				toast.success('Successfully')
-			}).catch((err) => {
-				toast.error(get(err, 'response.data.message', 'error'))
 			})
 		} else setValidated(true)
 	}

@@ -12,11 +12,12 @@ export const SearchFormBySubstringInName = () => {
 	const [substr, setSubstr] = useState('')
 
 	const findAll = () => {
-		findRoutesWithNameContains(substr).then((response) => {
+		toast.promise(findRoutesWithNameContains(substr), {
+			loading: 'Finding...',
+			success: 'Successfully',
+			error: (err) => get(err, 'response.data.message', 'Error'),
+		}).then((response) => {
 			setRoutes(response.data)
-			toast.success('Successfully')
-		}).catch((err) => {
-			toast.error(get(err, 'response.data.message', 'error'))
 		})
 	}
 

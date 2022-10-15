@@ -14,11 +14,12 @@ export const SearchFormBetweenLocations = () => {
 	const [toId, setToId] = useState('')
 
 	const findAll = () => {
-		findBetweenLocationsAndSortBy(fromId, toId, document.getElementById('selectOrderBy').value).then((response) => {
+		toast.promise(findBetweenLocationsAndSortBy(fromId, toId, document.getElementById('selectOrderBy').value), {
+			loading: 'Finding...',
+			success: 'Successfully',
+			error: (err) => get(err, 'response.data.message', 'Error'),
+		}).then((response) => {
 			setRoutes(response.data)
-			toast.success('Successfully')
-		}).catch((err) => {
-			toast.error(get(err, 'response.data.message', 'error'))
 		})
 	}
 

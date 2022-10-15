@@ -29,9 +29,8 @@ function App() {
 			setIsDataNeedsToBeUpdated(false)
 			getRoutes(filters, sort, paging).then((response) => {
 				setRoutes(response.data)
-				toast.success('ыыыыыыыыыы')
 			}).catch((err) => {
-				toast.error(get(err, 'response.data.message', 'error loading data'))
+				toast.error(get(err, 'response.data.message', 'Error loading data'))
 			}).finally(() => setIsLoading(false))
 		}
 	})

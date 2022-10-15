@@ -13,11 +13,10 @@ export const DeleteRouteButton = () => {
 	const deleteRoutes = () => {
 		const promises = []
 		selectedIds.forEach((id) => {
-			promises.push(deleteRoute(id).then(() => {
-				toast.success('route with id=' + id + ' removed')
-			}).catch((err) => {
-				toast.error('route with id=' + id + ' is not deleted\n' +
-					get(err, 'response.data.message', 'error'))
+			promises.push(toast.promise(deleteRoute(id), {
+				loading: 'Removing route with id=' + id + '...',
+				success: 'Route with id=' + id + ' removed',
+				error: (err) => 'Route with id=' + id + ' is not deleted\n' + get(err, 'response.data.message', ''),
 			}))
 		})
 		Promise.all(promises).finally(() => {
