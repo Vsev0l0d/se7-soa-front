@@ -53,7 +53,7 @@ export const findRoutesWithNameContains = (substr) => {
 }
 
 export const findBetweenLocationsAndSortBy = (fromId, toId, orderBy) => {
-	return axios.get(SERVICE_2 + '/navigator/routes/' + fromId + '/' + toId + '/' + orderBy)
+	return axios.post(SERVICE_2 + '/navigator/routes/' + fromId + '/' + toId + '/' + orderBy)
 }
 
 const washRoute = (route, isAddingWithLocationIds) => {
@@ -62,16 +62,13 @@ const washRoute = (route, isAddingWithLocationIds) => {
 		'coordinates': {
 			'x': route.coordinates.x,
 			'y': route.coordinates.y
-		},
-		'distance': route.distance
+		}
 	}
 
-	if (isAddingWithLocationIds) {
-		washedRoute['from'] = {'id': route.from.id}
-		washedRoute['to'] = {'id': route.to.id}
-	} else {
+	if (!isAddingWithLocationIds) {
 		washedRoute['from'] = {'x': route.from.x, 'y': route.from.y, 'z': route.from.z}
 		washedRoute['to'] = {'x': route.to.x, 'y': route.to.y, 'z': route.to.z}
+		washedRoute['distance'] = route.distance
 	}
 	return washedRoute
 }
