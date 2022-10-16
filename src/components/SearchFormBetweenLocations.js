@@ -14,7 +14,7 @@ export const SearchFormBetweenLocations = () => {
 	const [toId, setToId] = useState('')
 
 	const findAll = () => {
-		toast.promise(findBetweenLocationsAndSortBy(fromId, toId, document.getElementById('selectOrderBy').value), {
+		toast.promise(findBetweenLocationsAndSortBy(Number(fromId), Number(toId), document.getElementById('selectOrderBy').value), {
 			loading: 'Finding...',
 			success: 'Successfully',
 			error: (err) => get(err, 'response.data.message', 'Error'),
@@ -24,18 +24,18 @@ export const SearchFormBetweenLocations = () => {
 	}
 
 	return (
-		<Form>
+		<Form id="searchFormBetweenLocations">
 			<InputGroup className="mb-3">
 				<Button variant="dark" onClick={findAll}
-						disabled={fromId.includes('.') || toId.includes('.') ||
-							fromId.includes('-') || toId.includes('-') || fromId === '' || toId === ''}
+						disabled={fromId === '' || toId === '' ||
+							document.querySelectorAll('#searchFormBetweenLocations .form-control[type="number"]:invalid').length}
 				>Find all</Button>
 				<InputGroup.Text>between</InputGroup.Text>
 				<InputGroup.Text>from id</InputGroup.Text>
-				<Form.Control type="number" value={fromId}
+				<Form.Control type="number" min="1" value={fromId}
 							  onChange={event => setFromId(event.target.value)}/>
 				<InputGroup.Text>to id</InputGroup.Text>
-				<Form.Control type="number" value={toId}
+				<Form.Control type="number" min="1" value={toId}
 							  onChange={event => setToId(event.target.value)}/>
 				<InputGroup.Text>sort by</InputGroup.Text>
 				<Form.Select id="selectOrderBy">

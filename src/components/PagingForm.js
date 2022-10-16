@@ -13,7 +13,7 @@ export const PagingForm = () => {
 
 	const click = () => {
 		const newPaging = {}
-		if (limit.length) newPaging.limit = limit
+		if (limit.length) newPaging.limit = Number(limit)
 		if (pageNumber.length) newPaging.pageNumber = Number(pageNumber)
 		setPaging(newPaging)
 		setIsDataNeedsToBeUpdated(true)
@@ -27,7 +27,7 @@ export const PagingForm = () => {
 				>Set paging</Button>
 				<InputGroup.Text>with limit</InputGroup.Text>
 				<Form.Control type="number" min="1"
-							  className={Number(get(paging, 'limit', '10')) === Number(limit) ? 'bg-warning' : ''}
+							  className={get(paging, 'limit', '10') === Number(limit) ? 'bg-warning' : ''}
 							  onChange={event => {
 								  setLimit(event.target.value)
 							  }}/>

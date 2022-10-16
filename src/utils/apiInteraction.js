@@ -29,14 +29,15 @@ const sortToStr = (sort) => {
 }
 
 const pagingToStr = (paging) => {
-	const limit = get(paging, 'limit', '')
-	const pageNumber = String(get(paging, 'pageNumber', ''))
-	return (limit.length ? 'page_size=' + limit : '') + (limit.length && pageNumber.length ? '&' : '') +
-		(pageNumber.length ? 'page=' + pageNumber : '')
+	const limit = get(paging, 'limit', 10)
+	const pageNumber = get(paging, 'pageNumber', 1)
+	return (limit !== 10 ? 'page_size=' + limit : '') + (limit !== 10 && pageNumber !== 1 ? '&' : '') +
+		(pageNumber !== 1 ? 'page=' + pageNumber : '')
 }
 
 export const getRoutes = (filters, sort, paging) => {
 	const options = [filtersToStr(filters), sortToStr(sort), pagingToStr(paging)].filter(s => s.length).join('&')
+	console.log(SERVICE_1 + '/routes?' + options)
 	return axios.get(SERVICE_1 + '/routes?' + options)
 }
 
