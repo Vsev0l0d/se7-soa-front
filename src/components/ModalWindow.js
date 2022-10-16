@@ -42,7 +42,7 @@ export const ModalWindow = () => {
 		} else setValidated(true)
 	}
 	const updateRoute = () => {
-		const freshFeedback = validate(route, isWithLocationIds)
+		const freshFeedback = validate(route, false)
 		setFeedback(freshFeedback)
 		if (Object.keys(freshFeedback).length === 0) {
 			toast.promise(putRoute(route, false), {

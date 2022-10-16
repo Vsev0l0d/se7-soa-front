@@ -30,8 +30,9 @@ const sortToStr = (sort) => {
 
 const pagingToStr = (paging) => {
 	const limit = get(paging, 'limit', '')
-	const pageNumber = get(paging, 'pageNumber', '')
-	return (limit.length ? 'page_size=' + limit + '&' : '') + (pageNumber.length ? 'page=' + pageNumber : '')
+	const pageNumber = String(get(paging, 'pageNumber', ''))
+	return (limit.length ? 'page_size=' + limit : '') + (limit.length && pageNumber.length ? '&' : '') +
+		(pageNumber.length ? 'page=' + pageNumber : '')
 }
 
 export const getRoutes = (filters, sort, paging) => {

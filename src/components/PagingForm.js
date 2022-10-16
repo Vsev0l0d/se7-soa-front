@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button'
 import {useState} from 'react'
 import {useRecoilState, useSetRecoilState} from 'recoil'
 import {isDataNeedsToBeUpdatedState, pagingState} from '../state/atoms'
+import get from 'lodash.get'
 
 export const PagingForm = () => {
 	const [paging, setPaging] = useRecoilState(pagingState)
@@ -11,31 +12,30 @@ export const PagingForm = () => {
 	const [pageNumber, setPageNumber] = useState('')
 
 	const click = () => {
-		setPaging({'limit': limit, 'pageNumber': pageNumber})
+		const newPaging = {}
+		if (limit.length) newPaging.limit = limit
+		if (pageNumber.length) newPaging.pageNumber = Number(pageNumber)
+		setPaging(newPaging)
 		setIsDataNeedsToBeUpdated(true)
 	}
 
 	return (
-		<Form>
+		<Form id="pagingForm">
 			<InputGroup className="mb-3">
-				<Button variant="dark" onClick={click}
-						disabled={limit.includes('.') || pageNumber.includes('.') ||
-							limit.includes('-') || pageNumber.includes('-') ||
-							limit === '' || pageNumber === ''}
+				<Button variant="dark" onClick={click} disabled={(limit === '' && pageNumber === '') ||
+					document.querySelectorAll('#pagingForm .form-control[type="number"]:invalid').length}
 				>Set paging</Button>
 				<InputGroup.Text>with limit</InputGroup.Text>
-				<Form.Control type="number"
-							  className={Object.entries(paging).length ? 'bg-warning' : ''}
+				<Form.Control type="number" min="1"
+							  className={Number(get(paging, 'limit', '10')) === Number(limit) ? 'bg-warning' : ''}
 							  onChange={event => {
 								  setLimit(event.target.value)
-								  setPaging({})
 							  }}/>
 				<InputGroup.Text>and page number</InputGroup.Text>
-				<Form.Control type="number"
-							  className={Object.entries(paging).length ? 'bg-warning' : ''}
+				<Form.Control type="number" min="1"
+							  className={get(paging, 'pageNumber', 1) === Number(pageNumber) ? 'bg-warning' : ''}
 							  onChange={event => {
 								  setPageNumber(event.target.value)
-								  setPaging({})
 							  }}/>
 			</InputGroup>
 		</Form>
