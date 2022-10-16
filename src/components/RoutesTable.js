@@ -2,8 +2,10 @@ import React from 'react'
 import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil'
 import {
 	bufferRoute,
-	isAddingWithLocationIds, isDataNeedsToBeUpdatedState,
-	isEditingRoute, pagingState,
+	isAddingWithLocationIds,
+	isDataNeedsToBeUpdatedState,
+	isEditingRoute,
+	pagingState,
 	routesState,
 	selectedRoutesId,
 	showModalForm,
