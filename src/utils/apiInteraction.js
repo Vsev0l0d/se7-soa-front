@@ -37,7 +37,6 @@ const pagingToStr = (paging) => {
 
 export const getRoutes = (filters, sort, paging) => {
 	const options = [filtersToStr(filters), sortToStr(sort), pagingToStr(paging)].filter(s => s.length).join('&')
-	console.log(SERVICE_1 + '/routes?' + options)
 	return axios.get(SERVICE_1 + '/routes?' + options)
 }
 

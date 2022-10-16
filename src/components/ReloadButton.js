@@ -7,7 +7,7 @@ import {isDataNeedsToBeUpdatedState} from '../state/atoms'
 export const ReloadButton = ({isLoading}) => {
 	const setIsDataNeedsToBeUpdated = useSetRecoilState(isDataNeedsToBeUpdatedState)
 	return (
-		<Button variant="dark" disabled={isLoading} onClick={() => setIsDataNeedsToBeUpdated(true)}>
+		<Button variant="dark me-2" disabled={isLoading} onClick={() => setIsDataNeedsToBeUpdated(true)}>
 			{isLoading ?
 				<Spinner animation="border" variant="light" size="sm"/>
 				:

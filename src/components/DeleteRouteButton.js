@@ -26,6 +26,6 @@ export const DeleteRouteButton = () => {
 	}
 
 	return (
-		<Button hidden={selectedIds.length === 0} variant="danger" onClick={deleteRoutes}>Delete</Button>
+		<Button hidden={selectedIds.length === 0} variant="danger me-2" onClick={deleteRoutes}>Delete</Button>
 	)
 }
