@@ -2,7 +2,7 @@ import axios from 'axios'
 import get from 'lodash.get'
 
 const SERVICE_1 = 'https://localhost:4568/soa-3-1.0-SNAPSHOT'
-const SERVICE_2 = 'https://localhost:31361/soa-3-2-1.0-SNAPSHOT'
+const SERVICE_2 = 'http://localhost:31361/soa-s2'
 
 const filtersToStr = (filters) => {
 	return Object.keys(filters).map(filter => {
